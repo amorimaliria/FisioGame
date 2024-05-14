@@ -1,0 +1,28 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.logo-container {
+    text-align: center;
+}
+
+.logo-container img {
+    width: 150px;
+    height: auto;
+}
+
+.logo-container h1 {
+    color: #008080; /* verde-garrafa */
+    font-size: 28px;
+    margin-top: 10px;
+}
