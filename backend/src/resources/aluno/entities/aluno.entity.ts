@@ -1,6 +1,5 @@
 import { Column, Entity, JoinColumn, ManyToOne, OneToMany } from 'typeorm';
 import { AbstractEntity } from '../../../database/abstract.entity';
-import { Turma } from '../../turmas/
 @Entity()
 export class Aluno extends AbstractEntity<Aluno> {
   @Column({ unique: true })
@@ -8,6 +7,9 @@ export class Aluno extends AbstractEntity<Aluno> {
 
   @Column()
   nome: string;
+
+  @Column()
+  genero: Genero;
 
   @Column()
   isActive: boolean;
