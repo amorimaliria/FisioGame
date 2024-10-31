@@ -1,5 +1,4 @@
 export const userTypes = {
-  CoordenadorPedagogico: 'Coordenador Pedagógico',
+  Aluno: 'Aluno',
   Professor: 'Professor',
-  Gestor: 'Gestor',
 };
