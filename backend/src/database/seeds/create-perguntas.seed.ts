@@ -1,4 +1,4 @@
-import { AppDataSource } from '../;
+import { AppDataSource } from '../data-source';
 import { Perguntas } from '../../resources/perguntas/entities/perguntas.entity';
 import * as XLSX from 'xlsx';
 

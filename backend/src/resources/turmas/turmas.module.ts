@@ -4,6 +4,6 @@ import { TurmasController } from './turmas.controller';
 
 @Module({
   providers: [TurmasService],
-  controllers: [TurmasController]
+  controllers: [TurmasController],
 })
 export class TurmasModule {}

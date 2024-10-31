@@ -1,12 +1,8 @@
-import {
-  Column,
-  Entity,
-  ManyToMany,
-  ManyToOne,
-  OneToMany,
-  JoinColumn,
-  JoinTable,
-} from 'typeorm';
+import { Column, Entity, ManyToMany, OneToMany, JoinTable } from 'typeorm';
+
+import { AbstractEntity } from '../../../database/abstract.entity';
+import { Aluno } from 'src/resources/users/entities/aluno.entity';
+import { Professor } from 'src/resources/users/entities/professor.entity';
 
 @Entity()
 export class Turma extends AbstractEntity<Turma> {
@@ -14,32 +10,29 @@ export class Turma extends AbstractEntity<Turma> {
   codigo: string;
 
   @Column()
-  turno: Turno;
+  descricao: string;
 
   @Column()
-  letra: Letra;
+  periodo: number;
 
   @Column()
-  anoOcorrencia: number;
-
-  @Column()
-  anoLetivo: AnoLetivo;
+  anoLetivo: number;
 
   @ManyToMany(() => Professor)
   @JoinTable()
   professores: Professor[];
 
-  @ManyToOne(() => Escola, (escola) => escola.turmas)
+  /** TODO: Implementar relacionamento com a instituição
+   * 
+   * @ManyToOne(() => Instituicao, (instituicao) => instituicao.turmas)
   @JoinColumn()
-  escola: Escola;
+  instituicao: Instituicao;
+  */
 
   @OneToMany(() => Aluno, (aluno) => aluno.turma)
   alunos: Aluno[];
 
-  @OneToMany(() => TestePlanejado, (testePlanejado) => testePlanejado.turma)
-  testesPlanejados: TestePlanejado[];
-
   get nome() {
-    return `${this.anoLetivo} ${this.letra}, ${this.anoOcorrencia}`;
+    return `${this.descricao} ${this.anoLetivo}.${this.periodo}`;
   }
 }

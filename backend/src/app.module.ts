@@ -1,34 +1,36 @@
 import { Module } from '@nestjs/common';
-import { TypeOrmModule } from '@nestjs/typeorm';
+import { ConfigModule } from '@nestjs/config';
+import { MulterModule } from '@nestjs/platform-express';
+import { ServeStaticModule } from '@nestjs/serve-static';
+import { join } from 'path';
+import { memoryStorage } from 'multer';
+
 import { UsersModule } from './resources/users/users.module';
-import { ProfessorModule } from './resources/professor/professor.module';
-import { ProfessorService } from './resources/professor/professor.service';
-import { AlunoController } from './resources/aluno/aluno.controller';
-import { AlunoService } from './resources/aluno/aluno.service';
-import { ProfessorController } from './resources/professor/professor.controller';
-import { AlunoModule } from './resources/aluno/aluno.module';
 import { PerguntasModule } from './resources/perguntas/perguntas.module';
-import { PerguntasService } from './resources/perguntas/perguntas.service';
-import { PerguntasController } from './resources/perguntas/perguntas.controller';
+import { TurmasModule } from './resources/turmas/turmas.module';
+import { DatabaseModule } from './database/database.module';
+import { AuthModule } from './services/auth/auth.module';
 
 @Module({
   imports: [
-    TypeOrmModule.forRoot({
-      type: 'postgres',
-      host: 'localhost',
-      port: 5432,
-      username: 'postgres',
-      password: 'password',
-      database: 'fisioGameApp',
-      entities: [__dirname + '/**/*.entity{.ts,.js}'],
-      synchronize: true,
+    ConfigModule.forRoot({
+      isGlobal: true,
+      envFilePath: [`.env.${process.env.NODE_ENV}`, '.env'],
     }),
+    MulterModule.register({
+      storage: memoryStorage(),
+    }),
+    DatabaseModule,
     UsersModule,
-    ProfessorModule,
-    AlunoModule,
     PerguntasModule,
+    TurmasModule,
+    AuthModule,
+    ServeStaticModule.forRoot({
+      rootPath: join(__dirname, '..', 'swagger-static'),
+      serveRoot: process.env.NODE_ENV === 'development' ? '/' : '/api',
+    }),
   ],
-  providers: [ProfessorService, AlunoService, PerguntasService],
-  controllers: [ProfessorController, AlunoController, PerguntasController],
+  controllers: [],
+  providers: [],
 })
 export class AppModule {}
