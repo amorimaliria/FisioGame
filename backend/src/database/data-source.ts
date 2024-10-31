@@ -3,7 +3,7 @@ import { DataSource, DataSourceOptions } from 'typeorm';
 import { config } from 'dotenv';
 
 import { Perguntas } from '../resources/perguntas/entities/perguntas.entity';
-//import { Professor } from '../resources/professor/entities/professor.entity';
+import { Professor } from '../resources/users/entities/professor.entity';
 import { Aluno } from '../resources/users/entities/aluno.entity';
 import { User } from '../resources/users/entities/user.entity';
 
@@ -18,7 +18,7 @@ export const dataSourceOptions: DataSourceOptions = {
   username: configService.get<string>('DATABASE_USERNAME'),
   password: configService.get<string>('DATABASE_PASSWORD'),
   database: configService.get<string>('DATABASE_NAME'),
-  entities: [Perguntas, Aluno, User],
+  entities: [Perguntas, Aluno, User, Professor],
   ssl: ['production', 'staging'].includes(configService.getOrThrow('NODE_ENV')),
   migrations: ['migrations/**'],
 };

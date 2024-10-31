@@ -3,12 +3,18 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Repository } from 'typeorm';
 
 import { User } from './entities/user.entity';
+import { Professor } from './entities/professor.entity';
+import { Aluno } from './entities/aluno.entity';
 
 @Injectable()
 export class UsersService {
   constructor(
     @InjectRepository(User)
     private readonly usersRepository: Repository<User>,
+    @InjectRepository(User)
+    private readonly professorRepository: Repository<Professor>,
+    @InjectRepository(User)
+    private readonly alunoRepository: Repository<Aluno>,
   ) {}
 
   create(user: Partial<User>): Promise<User> {
