@@ -1,12 +1,13 @@
 import React from 'react';
 import './App.css';
+import logo from './assets/logo.png';
 
 function App() {
   return (
     <div className="login-container">
       <div className="login-image">
         <img
-          src="./logo.png"
+          src={logo}
           alt="FisioGame Logo"
           className="logo"
         />
@@ -23,10 +24,6 @@ function App() {
           <div className="form-group">
             <label htmlFor="password">Senha</label>
             <input type="password" id="password" placeholder="Digite sua senha" />
-          </div>
-          <div className="form-group">
-            <input type="checkbox" id="rememberMe" />
-            <label htmlFor="rememberMe">Lembrar de mim</label>
           </div>
           <button type="submit">Entrar</button>
         </form>
