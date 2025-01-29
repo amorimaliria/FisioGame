@@ -1,8 +1,9 @@
 import React from 'react';
-import './login.css';
+//import './login.css';
 import logo from '../../assets/logo.png';
 
 function Login() {
+  console.log('Login component is rendering...');
   return (
     <div className="login-container">
       <div className="login-image">
