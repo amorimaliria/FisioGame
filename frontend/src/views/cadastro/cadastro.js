@@ -10,7 +10,7 @@ function Cadastro() {
         <label htmlFor="fullName">Nome Completo</label>
         <input type="text" id="fullName" name="fullName" placeholder="Digite seu nome completo" required />
 
-        <label htmlFor="nickname">Apelido</label>
+        <label htmlFor="nickname">Nome de usuário</label>
         <input type="text" id="nickname" name="nickname" placeholder="Digite seu apelido" required />
 
         <label htmlFor="email">Email</label>

@@ -1,5 +1,6 @@
 import React from 'react';
-//import './login.css';
+import { Link } from 'react-router-dom';
+import './login.css';
 import logo from '../../assets/logo.png';
 
 function Login() {
@@ -31,7 +32,7 @@ function Login() {
         <div className="form-footer">
           <a href="#forgot-password">Esqueceu a senha?</a>
           <p>
-            Não possui conta? <a href="#register">Cadastre-se</a>
+            Não possui conta? <Link to="/cadastro">Cadastre-se</Link>
           </p>
         </div>
       </div>
