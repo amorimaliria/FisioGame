@@ -27,7 +27,9 @@ function Login() {
             <label htmlFor="password">Senha</label>
             <input type="password" id="password" placeholder="Digite sua senha" />
           </div>
-          <button type="submit">Entrar</button>
+          <Link to="/menuPrincipal">
+            <button type="button">Entrar</button>
+          </Link>
         </form>
         <div className="form-footer">
           <a href="#forgot-password">Esqueceu a senha?</a>

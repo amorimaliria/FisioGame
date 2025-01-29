@@ -1,5 +1,6 @@
 import React from 'react';
 import './Cadastro.css';
+import { Link } from 'react-router-dom';
 
 function Cadastro() {
   return (
@@ -26,7 +27,7 @@ function Cadastro() {
         <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Confirme sua senha" required />
 
         <button type="submit">Cadastrar</button>
-        <p className="back-to-login">Já possui conta? <a href="/login">Voltar ao Login</a></p>
+        <p className="back-to-login">Já possui conta? <Link to="/">Voltar ao Login</Link></p>
       </form>
     </div>
   );
