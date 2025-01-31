@@ -23,7 +23,7 @@ body {
   }
   
   .login-image .logo {
-    max-width: 300px;
+    max-width: 400px;
     margin-bottom: 20px;
   }
   
@@ -48,6 +48,21 @@ body {
     margin-bottom: 20px;
     color: #666;
     text-align: center;
+  }
+
+  .login-image h1 {
+    margin-bottom: 20px;
+    color: #850b0b;
+    text-align: center;
+    font-family: Verdana, Geneva, Tahoma, sans-serif; /* Apenas fontes nativas */
+    font-size: 72px;
+    color: teal;
+    text-transform: uppercase;
+    letter-spacing: 5px;
+    text-shadow: 2px 2px 0 #FFFFFF, 
+                -2px 2px 0 #FFFFFF, 
+                2px -2px 0 #FFFFFF, 
+                -2px -2px 0 #FFFFFF;
   }
   
   .form-group {
