@@ -1,16 +1,20 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import './menu-principal.css';
-import { Home, User, List } from 'lucide-react';
-import { useState } from 'react';
-import { Trophy, Volume2, VolumeX, Star, Heart, ChevronRight, MoreHorizontal  } from 'lucide-react';
+import logo from '../../assets/logo.png';
+// Importando bibliotecas e funcionalidades
+import { useState, activePage } from "react";
+import { FaHome, FaMedal, FaUser, FaEllipsisH, FaVolumeUp, FaVolumeMute, FaStar, FaHeart } from 'react-icons/fa'
 
 const MenuPrincipal = () => {
-  const [soundOn, setSoundOn] = useState(true);
+  const [isSoundOn, setSoundOn] = useState(true);
+  const [quirons, setQuirons] = useState(350);
+  const [vidas, setVidas] = useState(4);
   const [currentPage, setCurrentPage] = useState(1);
+  const [activePage, setActivePage] = useState('MenuPrincipalPage');
 
   const topics = [
-    { name: 'Membrana Celular', color: 'cyan', icon: '🧬' },
+    { name: 'Membrana Celular', color: '#6bddec', icon: '🧬' },
     { name: 'Fisiologia Muscular', color: 'orange', icon: '💪' },
     { name: 'Sistema Nervoso', color: 'limegreen', icon: '🧠' },
     { name: 'Sistema Circulatório', color: 'red', icon: '🩸' },
@@ -25,33 +29,50 @@ const MenuPrincipal = () => {
   ];
 
   const topicsPerPage = 6;
+
+  const toggleSound = () => setSoundOn(!isSoundOn);
   const handleNextPage = () => setCurrentPage(currentPage + 1);
   const handlePreviousPage = () => setCurrentPage(currentPage - 1);
+  const handleNavigation = (page) => { setActivePage(page);
+  };
 
   return (
     <div className="menu-principal-container">
       {/* Barra de Navegação Lateral */}
       <nav className="sidebar-left">
-        <h1>FISIOGAME</h1>
-        <ul className="menu-list">
-          <li className="menu-item selected">
-            <Home size={24} /> Início
-          </li>
-          <li className="menu-item">
-            <Trophy size={24} /> Ranking
-          </li>
-          <li className="menu-item">
-            <User size={24} /> Perfil
-          </li>
-          <li className="menu-item">
-            <MoreHorizontal size={24} /> Mais
-          </li>
-        </ul>
+        <h1 className="content-left">FISIOGAME</h1>
+        <div className="menu-buttons">
+        <button
+          className={`menu-item ${activePage === 'MenuPrincipalPage' ? 'selected' : ''}`}
+          onClick={() => handleNavigation('MenuPrincipalPage')}
+        >
+          <FaHome size={24} /> Início
+        </button>
+        <button
+          className={`menu-item ${activePage === 'ranking' ? 'selected' : ''}`}
+          onClick={() => handleNavigation('ranking')}
+        >
+          <FaMedal size={24} /> Ranking
+        </button>
+        <button
+          className={`menu-item ${activePage === 'perfil' ? 'selected' : ''}`}
+          onClick={() => handleNavigation('perfil')}
+        >
+          <FaUser size={24} /> Perfil
+        </button>
+        <button
+          className={`menu-item ${activePage === 'mais' ? 'selected' : ''}`}
+          onClick={() => handleNavigation('mais')}
+        >
+          <FaEllipsisH size={24} /> Mais
+        </button>
+      </div>
       </nav>
 
       {/* Seção Principal */}
       <main className="main-content">
         <header className="content-header">Selecione um assunto para continuar</header>
+
         <div className="topic-buttons">
           {topics.slice((currentPage - 1) * topicsPerPage, currentPage * topicsPerPage).map((topic, index) => (
             <button
@@ -66,12 +87,12 @@ const MenuPrincipal = () => {
         <div className="pagination-controls">
           {currentPage > 1 && (
             <button className="pagination-button" onClick={handlePreviousPage}>
-              <ChevronRight size={24} className="rotate-left" />
+              ◀ Voltar
             </button>
           )}
           {currentPage * topicsPerPage < topics.length && (
             <button className="pagination-button" onClick={handleNextPage}>
-              <ChevronRight size={24} />
+              Próximo ▶
             </button>
           )}
         </div>
@@ -79,18 +100,25 @@ const MenuPrincipal = () => {
 
       {/* Barra Lateral Direita */}
       <aside className="sidebar-right">
-        <div className="sound-toggle" onClick={() => setSoundOn(!soundOn)}>
-          {soundOn ? (
-            <><Volume2 size={24} /> Desativar Som</>
+        <div className="login-image">
+          <img
+            src={logo}
+            alt="FisioGame Logo"
+            className='logo'
+          />
+        </div>
+        <div className="sound-toggle" onClick={toggleSound}>
+          {isSoundOn ? (
+            <><FaVolumeUp size={24} /> Desativar Som</>
           ) : (
-            <><VolumeX size={24} /> Ativar Som</>
+            <><FaVolumeMute size={24} /> Ativar Som</>
           )}
         </div>
         <div className="score-display">
-          <Star size={24} /> Quirons
+          <FaStar size={24} /> {quirons} Quirons
         </div>
         <div className="lives-display">
-          <Heart size={24} /> 5 Vidas
+          <FaHeart size={24} /> {vidas} Vidas
         </div>
       </aside>
     </div>
