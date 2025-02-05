@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FaHome, FaUser, FaEllipsisH, FaUsers, FaBookOpen, FaVolumeUp, FaVolumeMute, FaSignOutAlt } from 'react-icons/fa';
-import './menu-principal.css';
+import './menu-professor.css';
 import logo from '../../assets/logo.png';
 import { Link } from 'react-router-dom';
 
@@ -8,7 +8,7 @@ const DashboardProfessor = () => {
   const [isSoundOn, setSoundOn] = useState(true);
   const [isProfileExpanded, setProfileExpanded] = useState(false);
   const [activePage, setActivePage] = useState('DashboardPage');
-  const userName = "João"; // Apenas o primeiro nome
+  const userName = "Marcio"; // Apenas o primeiro nome
   const userType = "Professor";
 
   const handleNavigation = (page) => {

@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import LoginPage from './views/login/login';
 import CadastroPage from './views/cadastro/cadastro';
 import MenuPrincipalPage from './views/menu-principal/menu-principal';
-import DashboardProfessor from './views/dashboard-professor/menu-principal';
+import DashboardProfessor from './views/dashboard-professor/menu-professor';
 import RankingPage from './views/ranking/ranking'
 import AssuntosPage from './views/assuntos/assuntos';
 function App() {
