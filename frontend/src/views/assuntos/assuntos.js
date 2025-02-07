@@ -1,5 +1,5 @@
 import React, { useState, activePage } from 'react';
-import './assuntos.css';
+import styles from './assuntos.module.css';
 import { FaHome, FaMedal, FaUser, FaEllipsisH, FaVolumeUp, FaVolumeMute, FaSearch, FaSignOutAlt } from 'react-icons/fa'
 import { Link } from 'react-router-dom';
 import assuntosMock from '../../data/assuntos-mock'
@@ -20,78 +20,78 @@ const GerenciamentoAssuntos = () => {
     );
   
     return (
-      <div className="menu-principal-container">
+      <div className={styles["menu-principal-container"]}>
         {/* Barra de Navegação Lateral */}
-        <nav className="sidebar-left">
+        <nav className={styles["sidebar-left"]}>
           <div className="logo-container">
-            <img src={logo} alt="FisioGame Logo" className="logo" />
-            <h1 className="content-left">FISIOGAME</h1>
+            <img src={logo} alt="FisioGame Logo" className={styles["logo"]}/>
+            <h1 className={styles["content-left"]}>FISIOGAME</h1>
           </div>
-          <div className="menu-buttons">
+          <div className={styles["menu-buttons"]}>
             <Link to="/dashboard">
-              <button className="menu-item">
+              <button className={styles["menu-item"]}>
                 <FaHome size={24} /> Início
               </button>
             </Link>
-            <button className="menu-item">
+            <button className={styles["menu-item"]}>
               <FaUser size={24} /> Perfil
             </button>
-            <button className="menu-item">
+            <button className={styles["menu-item"]}>
               <FaEllipsisH size={24} /> Mais
             </button>
           </div>
         </nav>
   
         {/* Conteúdo Principal */}
-        <main className="main-content">
-          <header className="content-header">Gerenciamento de Assuntos</header>
+        <main className={styles["main-content"]}>
+          <header className={styles["content-header"]}>Assuntos</header>
   
           {/* Barra de Pesquisa */}
-          <div className="search-bar">
+          <div className={styles["search-bar"]}>
             <input
               type="text"
               placeholder="Buscar Assunto..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
             />
-            <FaSearch size={20} className="search-icon" />
+            <FaSearch size={20} className={styles["search-icon"]} />
           </div>
   
           {/* Lista de Assuntos */}
-          <div className="assuntos-list">
+          <div className={styles["assuntos-list"]}>
             {assuntosFiltrados.length > 0 ? (
               assuntosFiltrados.map((assunto) => (
                 <Link
                   key={assunto.id}
                   to={`/assunto/${assunto.id}`}
-                  className="assunto-card"
+                  className={styles["assunto-card"]}
                 >
                   {assunto.nome}
                 </Link>
               ))
             ) : (
-              <p className="no-results">Nenhum assunto encontrado.</p>
+              <p className={styles["no-results"]}>Nenhum assunto encontrado.</p>
             )}
           </div>
         </main>
   
         {/* Barra Lateral Direita */}
-        <aside className="sidebar-right">
-          <div className={`profile-card ${isProfileExpanded ? 'expanded' : ''}`} onClick={toggleProfileExpand}>
-            <div className="profile-info">
+        <aside className={styles["sidebar-right"]}>
+          <div className={`${styles['profile-card']} ${isProfileExpanded ? styles['expanded'] : ''}`} onClick={toggleProfileExpand}>
+            <div className={styles["profile-info"]}>
               <FaUser size={24} />
               <span>{userName}</span>
-              <span className="user-type">{userType}</span>
+              <span className={styles["user-type"]}>{userType}</span>
             </div>
             {isProfileExpanded && (
-              <button className="logout-button">
+              <button className={styles["logout-button"]}>
                 <FaSignOutAlt size={18} /> Sair
               </button>
             )}
           </div>
   
           {/* Controle de Som */}
-          <div className="sound-toggle" onClick={toggleSound}>
+          <div className={styles["sound-toggle"]} onClick={toggleSound}>
             {isSoundOn ? (
               <><FaVolumeUp size={24} /> Desativar Som</>
             ) : (

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { FaHome, FaUser, FaEllipsisH, FaUsers, FaBookOpen, FaVolumeUp, FaVolumeMute, FaSignOutAlt } from 'react-icons/fa';
-import './menu-professor.css';
+import styles from './menu-professor.module.css';
 import logo from '../../assets/logo.png';
 import { Link } from 'react-router-dom';
 
@@ -19,28 +19,28 @@ const DashboardProfessor = () => {
   const toggleProfileExpand = () => setProfileExpanded(!isProfileExpanded);
 
   return (
-    <div className="menu-principal-container">
+    <div className={styles["menu-principal-container"]}>
       {/* Barra de Navegação Lateral */}
-      <nav className="sidebar-left">
-        <div className="logo-container">
-          <img src={logo} alt="FisioGame Logo" className="logo" />
-          <h1 className="content-left">FISIOGAME</h1>
+      <nav className={styles["sidebar-left"]}>
+        <div className={styles["logo-container"]}>
+          <img src={logo} alt="FisioGame Logo" className={styles["logo"]} />
+          <h1 className={styles["content-left"]}>FISIOGAME</h1>
         </div>
-        <div className="menu-buttons">
+        <div className={styles["menu-buttons"]}>
           <button
-            className={`menu-item ${activePage === 'DashboardPage' ? 'selected' : ''}`}
+            className={`${styles["menu-item"]} ${activePage === 'DashboardPage' ? styles["selected"] : ''}`}
             onClick={() => handleNavigation('DashboardPage')}
           >
             <FaHome size={24} /> Início
           </button>
           <button
-            className={`menu-item ${activePage === 'perfil' ? 'selected' : ''}`}
+            className={`${styles["menu-item"]} ${activePage === 'perfil' ? styles["selected"] : ''}`}
             onClick={() => handleNavigation('perfil')}
           >
             <FaUser size={24} /> Perfil
           </button>
           <button
-            className={`menu-item ${activePage === 'mais' ? 'selected' : ''}`}
+            className={`${styles["menu-item"]} ${activePage === 'mais' ? styles["selected"] : ''}`}
             onClick={() => handleNavigation('mais')}
           >
             <FaEllipsisH size={24} /> Mais
@@ -49,38 +49,38 @@ const DashboardProfessor = () => {
       </nav>
 
       {/* Conteúdo Principal */}
-      <main className="main-content">
-        <header className="content-header">Gerencie suas Turmas e Assuntos</header>
-        <div className="topic-buttons">
-          <button className="topic-button" style={{ backgroundColor: '#007C91' }}>
+      <main className={styles["main-content"]}>
+        <header className={styles["content-header"]}>Gerencie suas Turmas e Assuntos</header>
+        <div className={styles["topic-buttons"]}>
+          <button className={styles["topic-button"]} style={{ backgroundColor: '#007C91' }}>
             <FaUsers size={24} /> Turmas
           </button>
           <Link to="/assuntos">
-          <button className="topic-button" style={{ backgroundColor: '#6bddec' }}>
-            <FaBookOpen size={24} /> Assuntos
-          </button>
+            <button className={styles["topic-button"]} style={{ backgroundColor: '#6bddec' }}>
+              <FaBookOpen size={24} /> Assuntos
+            </button>
           </Link>
         </div>
       </main>
 
       {/* Barra Lateral Direita */}
-      <aside className="sidebar-right">
+      <aside className={styles["sidebar-right"]}>
         {/* Card de Informações do Usuário */}
-        <div className={`profile-card ${isProfileExpanded ? 'expanded' : ''}`} onClick={toggleProfileExpand}>
-          <div className="profile-info">
+        <div className={`${styles["profile-card"]} ${isProfileExpanded ? styles["expanded"] : ''}`} onClick={toggleProfileExpand}>
+          <div className={styles["profile-info"]}>
             <FaUser size={24} />
             <span>{userName}</span>
-            <span className="user-type">{userType}</span>
+            <span className={styles["user-type"]}>{userType}</span>
           </div>
           {isProfileExpanded && (
-            <button className="logout-button">
+            <button className={styles["logout-button"]}>
               <FaSignOutAlt size={18} /> Sair
             </button>
           )}
         </div>
 
         {/* Controle de Som */}
-        <div className="sound-toggle" onClick={toggleSound}>
+        <div className={styles["sound-toggle"]} onClick={toggleSound}>
           {isSoundOn ? (
             <><FaVolumeUp size={24} /> Desativar Som</>
           ) : (

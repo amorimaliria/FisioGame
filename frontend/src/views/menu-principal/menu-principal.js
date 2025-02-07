@@ -1,10 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import './menu-principal.css';
+import styles from './menu-principal.module.css';
 import logo from '../../assets/logo.png';
-// Importando bibliotecas e funcionalidades
 import { useState, activePage } from "react";
-import { FaHome, FaMedal, FaUser, FaEllipsisH, FaVolumeUp, FaVolumeMute, FaStar, FaHeart } from 'react-icons/fa'
+import { FaHome, FaMedal, FaUser, FaEllipsisH, FaVolumeUp, FaVolumeMute, FaStar, FaHeart, FaSignOutAlt } from 'react-icons/fa'
 
 const MenuPrincipal = () => {
   const [isSoundOn, setSoundOn] = useState(true);
@@ -12,6 +11,10 @@ const MenuPrincipal = () => {
   const [vidas, setVidas] = useState(4);
   const [currentPage, setCurrentPage] = useState(1);
   const [activePage, setActivePage] = useState('MenuPrincipalPage');
+  const [isProfileExpanded, setProfileExpanded] = useState(false);
+
+  const userName = "Vitória"; // Apenas o primeiro nome
+  const userType = "Aluno";
 
   const topics = [
     { name: 'Membrana Celular', color: '#6bddec', icon: '🧬' },
@@ -35,33 +38,37 @@ const MenuPrincipal = () => {
   const handlePreviousPage = () => setCurrentPage(currentPage - 1);
   const handleNavigation = (page) => { setActivePage(page);
   };
+  const toggleProfileExpand = () => setProfileExpanded(!isProfileExpanded);
 
   return (
-    <div className="menu-principal-container">
+    <div className = {styles["menu1-principal-container"]}>
       {/* Barra de Navegação Lateral */}
-      <nav className="sidebar-left">
-        <h1 className="content-left">FISIOGAME</h1>
-        <div className="menu-buttons">
+      <nav className= {styles["sidebar-left"]}>
+        <div className={styles["logo-container"]}>
+          <img src={'/logo.png'} alt="FisioGame Logo" className={styles["logo"]} />
+          <h1 className={styles["content-left"]}>FISIOGAME</h1>
+        </div>
+        <div className={styles["menu-buttons"]}>
         <button
-          className={`menu-item ${activePage === 'MenuPrincipalPage' ? 'selected' : ''}`}
+          className={`${styles['menu-item']} ${activePage === 'MenuPrincipalPage' ? styles['selected'] : ''}`}
           onClick={() => handleNavigation('MenuPrincipalPage')}
         >
           <FaHome size={24} /> Início
         </button>
         <button
-          className={`menu-item ${activePage === 'ranking' ? 'selected' : ''}`}
+          className={`${styles['menu-item']} ${activePage === 'ranking' ? styles['selected'] : ''}`}
           onClick={() => handleNavigation('ranking')}
         >
           <FaMedal size={24} /> Ranking
         </button>
         <button
-          className={`menu-item ${activePage === 'perfil' ? 'selected' : ''}`}
+          className={`${styles['menu-item']} ${activePage === 'perfil' ? styles['selected'] : ''}`}
           onClick={() => handleNavigation('perfil')}
         >
           <FaUser size={24} /> Perfil
         </button>
         <button
-          className={`menu-item ${activePage === 'mais' ? 'selected' : ''}`}
+          className={`${styles['menu-item']} ${activePage === 'mais' ? styles['selected'] : ''}`}
           onClick={() => handleNavigation('mais')}
         >
           <FaEllipsisH size={24} /> Mais
@@ -70,28 +77,28 @@ const MenuPrincipal = () => {
       </nav>
 
       {/* Seção Principal */}
-      <main className="main-content">
-        <header className="content-header">Selecione um assunto para continuar</header>
+      <main className= {styles["main-content"]}>
+        <header className= {styles["content-header"]}>Selecione um assunto para continuar</header>
 
-        <div className="topic-buttons">
+        <div className={styles["card-buttons"]}>
           {topics.slice((currentPage - 1) * topicsPerPage, currentPage * topicsPerPage).map((topic, index) => (
             <button
               key={index}
-              className="topic-button"
+              className={styles["card-button"]}
               style={{ backgroundColor: topic.color }}
             >
               {topic.icon} {topic.name}
             </button>
           ))}
         </div>
-        <div className="pagination-controls">
+        <div className={styles["pagination-controls"]}>
           {currentPage > 1 && (
-            <button className="pagination-button" onClick={handlePreviousPage}>
+            <button className={styles["pagination-button" ]} onClick={handlePreviousPage}>
               ◀ Voltar
             </button>
           )}
           {currentPage * topicsPerPage < topics.length && (
-            <button className="pagination-button" onClick={handleNextPage}>
+            <button className= {styles["pagination-button"]} onClick={handleNextPage}>
               Próximo ▶
             </button>
           )}
@@ -99,25 +106,30 @@ const MenuPrincipal = () => {
       </main>
 
       {/* Barra Lateral Direita */}
-      <aside className="sidebar-right">
-        <div className="login-image">
-          <img
-            src={logo}
-            alt="FisioGame Logo"
-            className='logo'
-          />
-        </div>
-        <div className="sound-toggle" onClick={toggleSound}>
+      <aside className={styles["sidebar-right"]}>
+        <div className={`${styles["profile-card"]} ${isProfileExpanded ? styles["expanded"] : ''}`} onClick={toggleProfileExpand}>
+                  <div className={styles["profile-info"]}>
+                    <FaUser size={24} />
+                    <span>{userName}</span>
+                    <span className={styles["user-type"]}>{userType}</span>
+                  </div>
+                  {isProfileExpanded && (
+                    <button className={styles["logout-button"]}>
+                      <FaSignOutAlt size={18} /> Sair
+                    </button>
+                  )}
+                </div>
+        <div className={styles["sound-toggle"]} onClick={toggleSound}>
           {isSoundOn ? (
             <><FaVolumeUp size={24} /> Desativar Som</>
           ) : (
             <><FaVolumeMute size={24} /> Ativar Som</>
           )}
         </div>
-        <div className="score-display">
+        <div className={styles["score-display"]}>
           <FaStar size={24} /> {quirons} Quirons
         </div>
-        <div className="lives-display">
+        <div className={styles["lives-display"]}>
           <FaHeart size={24} /> {vidas} Vidas
         </div>
       </aside>
