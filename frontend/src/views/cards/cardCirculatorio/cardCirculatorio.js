@@ -1,50 +1,30 @@
-import React, { useState } from 'react';
-import styles from './menu-principal.module.css';
-import logo from '../../assets/logo.png';
+import React from 'react';
+import styles from './card.module.css';
+import { FaHome, FaMedal, FaUser, FaEllipsisH, FaVolumeUp, FaVolumeMute, FaStar, FaHeart, FaSignOutAlt, FaHeartbeat } from 'react-icons/fa'
+import { useState } from "react";
 import { Link } from 'react-router-dom'; // Importe o Link
-import { FaHome, FaMedal, FaUser, FaEllipsisH, FaVolumeUp, FaVolumeMute, FaStar, FaHeart, FaSignOutAlt } from 'react-icons/fa'
 
-const MenuPrincipal = () => {
+const TopicCirculatorio = ({ topicName }) => {
     const [isSoundOn, setSoundOn] = useState(true);
     const [quirons, setQuirons] = useState(350);
     const [vidas, setVidas] = useState(4);
-    const [currentPage, setCurrentPage] = useState(1);
     const [activePage, setActivePage] = useState('MenuPrincipalPage');
     const [isProfileExpanded, setProfileExpanded] = useState(false);
 
     const userName = "Vitória"; // Apenas o primeiro nome
     const userType = "Aluno";
 
-    const topics = [
-        { name: 'Membrana Celular', color: '#6bddec', icon: '🧬', path: '/começar' }, // Adicione o path
-        { name: 'Fisiologia Muscular', color: 'orange', icon: '💪', path: '/fisiologia-muscular' }, // Adicione o path
-        { name: 'Sistema Nervoso', color: 'limegreen', icon: '🧠', path: '/sistema-nervoso' }, // Adicione o path
-        { name: 'Sistema Circulatório', color: '#f14029', icon: '🩸', path: '/cardCirculatorio' }, // Adicione o path
-        { name: 'Sistema Urinário', color: 'skyblue', icon: '🔵', path: '/sistema-urinario' }, // Adicione o path
-        { name: 'Sistema Respiratório', color: 'forestgreen', icon: '🌬️', path: '/sistema-respiratorio' }, // Adicione o path
-        { name: 'Sistema Digestório', color: 'yellow', icon: '🍏', path: '/sistema-digestorio' }, // Adicione o path
-        { name: 'Sistema Endócrino', color: 'purple', icon: '🔮', path: '/sistema-endocrino' }, // Adicione o path
-        { name: 'Sistema Reprodutor', color: 'gray', icon: '⚧️', path: '/sistema-reprodutor' }, // Adicione o path
-        { name: 'Fisiologia do Esporte', color: 'navy', icon: '🏊‍♂️', path: '/fisiologia-esporte' }, // Adicione o path
-        { name: 'Duelo', color: 'darkblue', icon: '⚔️', path: '/duelo' }, // Adicione o path
-        { name: 'Liga das Estrelas', color: 'pink', icon: '🏆', path: '/liga-estrelas' } // Adicione o path
-    ];
-
-    const topicsPerPage = 6;
-
     const toggleSound = () => setSoundOn(!isSoundOn);
-    const handleNextPage = () => setCurrentPage(currentPage + 1);
-    const handlePreviousPage = () => setCurrentPage(currentPage - 1);
     const handleNavigation = (page) => { setActivePage(page); };
     const toggleProfileExpand = () => setProfileExpanded(!isProfileExpanded);
 
 
     return (
-        <div className={styles["menu1-principal-container"]}>
+        <div className={styles["topic-page-container"]}>
             {/* Barra de Navegação Lateral */}
             <nav className={styles["sidebar-left"]}>
                 <div className={styles["logo-container"]}>
-                    <img src={logo} alt="FisioGame Logo" className={styles["logo"]} />
+                    <img src={'/logo.png'} alt="FisioGame Logo" className={styles["logo"]} />
                     <h1 className={styles["content-left"]}>FISIOGAME</h1>
                 </div>
                 <div className={styles["menu-buttons"]}>
@@ -85,31 +65,9 @@ const MenuPrincipal = () => {
 
             {/* Seção Principal */}
             <main className={styles["main-content"]}>
-                <header className={styles["content-header"]}>Selecione um assunto para continuar</header>
-
-                <div className={styles["card-buttons"]}>
-                    {topics.slice((currentPage - 1) * topicsPerPage, currentPage * topicsPerPage).map((topic, index) => (
-                        <Link to={`${topic.path}`} key={index} style={{ textDecoration: 'none' }}> {/* Link aqui */}
-                            <button
-                                className={styles["card-button"]}
-                                style={{ backgroundColor: topic.color }}
-                            >
-                                {topic.icon} {topic.name}
-                            </button>
-                        </Link>
-                    ))}
-                </div>
-                <div className={styles["pagination-controls"]}>
-                    {currentPage > 1 && (
-                        <button className={styles["pagination-button"]} onClick={handlePreviousPage}>
-                            ◀ Voltar
-                        </button>
-                    )}
-                    {currentPage * topicsPerPage < topics.length && (
-                        <button className={styles["pagination-button"]} onClick={handleNextPage}>
-                            Próximo ▶
-                        </button>
-                    )}
+                <header className={styles["content-header"]}> SISTEMA CIRCULATÓRIO </header>
+                <div className={styles["topic-content"]}>
+                    <button className={styles["start-button"]}> <FaHeartbeat/> COMEÇAR </button>
                 </div>
             </main>
 
@@ -145,4 +103,4 @@ const MenuPrincipal = () => {
     );
 };
 
-export default MenuPrincipal;
+export default TopicCirculatorio;

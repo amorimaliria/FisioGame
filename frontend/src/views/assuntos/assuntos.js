@@ -1,7 +1,7 @@
 import React, { useState, activePage } from 'react';
 import styles from './assuntos.module.css';
-import { FaHome, FaMedal, FaUser, FaEllipsisH, FaVolumeUp, FaVolumeMute, FaSearch, FaSignOutAlt } from 'react-icons/fa'
-import { Link } from 'react-router-dom';
+import { FaHome, FaMedal, FaUser, FaEllipsisH, FaVolumeUp, FaVolumeMute, FaSearch, FaSignOutAlt, FaPlus, } from 'react-icons/fa'
+import { Link, useNavigate } from 'react-router-dom';
 import assuntosMock from '../../data/assuntos-mock'
 import logo from '../../assets/logo.png';
 
@@ -9,6 +9,7 @@ const GerenciamentoAssuntos = () => {
     const [searchTerm, setSearchTerm] = useState('');
     const [isSoundOn, setSoundOn] = useState(true);
     const [isProfileExpanded, setProfileExpanded] = useState(false);
+    const navigate = useNavigate();
     const userName = "Marcio"; 
     const userType = "Professor";
   
@@ -56,6 +57,15 @@ const GerenciamentoAssuntos = () => {
             />
             <FaSearch size={20} className={styles["search-icon"]} />
           </div>
+
+           {/* Botão de Cadastro de Assunto */}
+          <button
+            className={`${styles["menu-item"]} ${styles["add-assunto"]}`}
+            onClick={() => navigate('/assuntos/cadastrar')}
+          >
+            <FaPlus size={18} /> Novo Assunto
+          </button>
+
   
           {/* Lista de Assuntos */}
           <div className={styles["assuntos-list"]}>
@@ -63,7 +73,7 @@ const GerenciamentoAssuntos = () => {
               assuntosFiltrados.map((assunto) => (
                 <Link
                   key={assunto.id}
-                  to={`/assunto/${assunto.id}`}
+                  to={`/assunto/2`}
                   className={styles["assunto-card"]}
                 >
                   {assunto.nome}
