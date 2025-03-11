@@ -1,7 +1,7 @@
 import { Module } from '@nestjs/common';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { PerguntasModule } from './perguntas/perguntas.module';
+import { PerguntasModule } from './resources/perguntas/perguntas.module';
 
 @Module({
   imports: [
