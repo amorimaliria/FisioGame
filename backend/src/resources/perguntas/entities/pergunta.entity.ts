@@ -1,6 +1,6 @@
 import { Entity, Column, ManyToOne } from 'typeorm';
 import { AbstractEntity } from '../../../database/abstract.entity';
-import { Assunto } from '../entities
+import { Assunto } from '../../assuntos/entities/assunto.entity';
 import { Length } from 'class-validator';
 
 /**
