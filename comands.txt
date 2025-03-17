@@ -1,0 +1,5 @@
+## Iniciar projeto node
+npm init -y
+
+## Instalar biblioteca express (arquivos package-lock.json, cria pasta node modules [bibliotecas])
+npm i express

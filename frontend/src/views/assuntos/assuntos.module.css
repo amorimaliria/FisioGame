@@ -1,0 +1,168 @@
+.menu-principal-container {
+    display: grid;
+    grid-template-columns: 1fr 3fr 1fr;
+    height: 110vh;
+    gap: 1px;
+    background-color: #3d444b;
+  }
+  
+  .content-header {
+    background-color: #23c4e0;
+    color: white;
+    padding: 15px 20px;
+    text-align: center;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 1.5rem;
+    margin-bottom: 60px;
+  }
+
+  .content-left{
+    color: rgb(12, 160, 79); /* Cor do texto branco */
+    padding: 15px 20px;
+    text-align: center;
+    border-radius: 8px; /* Bordas arredondadas */
+    font-weight: bold;
+    font-family:fantasy;
+    font-size: 1.5rem; /* Tamanho maior para destaque */
+    margin-bottom: 60px; /* Espaçamento inferior */
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2); /* Sombra para destacar */
+  
+  }
+  
+  .sidebar-left,
+  .sidebar-right {
+    background-color: #545d66;
+    padding: 15px;
+    font-family:fantasy;
+    border-radius: 10px;
+    margin: 10px;
+  }
+
+  .logo-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-bottom: 20px;
+  }
+  
+  .logo {
+    max-width: 120px;
+    border-radius: 8px;
+  }
+  
+  
+  .menu-item {
+    background-color: #007C91;
+    color: white;
+    padding: 10px 0px;
+    text-align: center;
+    border-radius: 8px;
+    margin: 5px;
+    font-size: 1.5rem;
+    margin-bottom: 25px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+  }
+  
+  .main-content {
+    padding: 30px;
+    background-color: #3d444b;
+  }
+  
+  .search-bar {
+    display: flex;
+    align-items: center;
+    background-color: #2c6a75;
+    padding: 10px 20px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+  }
+  
+  .search-bar input {
+    flex: 1;
+    padding: 10px;
+    font-size: 1rem;
+    border: none;
+    background: transparent;
+    color: white;
+  }
+  
+  .search-icon {
+    color: white;
+  }
+  
+  .assuntos-list {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+  }
+  
+  .assunto-card {
+    background-color: #2cbebe;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    border-radius: 8px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    text-decoration: none;
+  }
+  
+  .no-results {
+    color: white;
+    font-size: 1.2rem;
+    text-align: center;
+  }
+  
+  .profile-card {
+    background-color: #2c6a75;
+    color: white;
+    padding: 20px;
+    text-align: center;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 1.5rem;
+    cursor: pointer;
+    margin-bottom: 20px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+  }
+  
+  .profile-card.expanded {
+    background-color: #007C91;
+  }
+  
+  .profile-info {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+  }
+  
+  .user-type {
+    font-size: 1rem;
+    color: lightgray;
+  }
+  
+  .logout-button {
+    background-color: #e47070;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-top: 10px;
+  }
+  
+  .sound-toggle {
+    background-color: #2c6a75;
+    color: white;
+    padding: 20px 50px;
+    text-align: center;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    cursor: pointer;
+  }
+  
