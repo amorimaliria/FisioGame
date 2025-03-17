@@ -1,5 +1,5 @@
 import React from 'react';
-import './Cadastro.css';
+import './cadastro.module.css';
 import { Link } from 'react-router-dom';
 
 function Cadastro() {
@@ -12,7 +12,7 @@ function Cadastro() {
         <input type="text" id="fullName" name="fullName" placeholder="Digite seu nome completo" required />
 
         <label htmlFor="nickname">Nome de usuário</label>
-        <input type="text" id="nickname" name="nickname" placeholder="Digite seu apelido" required />
+        <input type="text" id="nickname" name="nickname" placeholder="Digite um nome para o seu avatar" required />
 
         <label htmlFor="email">Email</label>
         <input type="email" id="email" name="email" placeholder="Digite seu email" required />

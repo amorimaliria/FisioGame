@@ -20,12 +20,17 @@ export class UsersService {
     private readonly usersRepository: Repository<User>,
     private readonly entityManager: EntityManager,
     @InjectRepository(Gestor)
-    private readonly gestorsRepository: Repository<Gestor>,
+    private readonly gestorRepository: Repository<Gestor>,
     private readonly entityGestorManager: EntityManager,
     @InjectRepository(Player)
-    private readonly playersRepository: Repository<Player>,
+    private readonly playerRepository: Repository<Player>,
   ) {}
 
+  async createUser(createUserDto: CreateUserDto) {
+    const user = new User(createUserDto);
+    await this.entityManager.save(user);
+    return user;
+  }
   async createGestor(createUserDto: CreateUserDto) {
     const gestor = new Gestor(createUserDto);
     await this.entityGestorManager.save(gestor);
@@ -34,7 +39,7 @@ export class UsersService {
 
   async createPlayer(createUserDto: CreateUserDto) {
     const player = new Player(createUserDto);
-    await this.playersRepository.save(player);
+    await this.playerRepository.save(player);
     return player;
   }
 
@@ -50,12 +55,12 @@ export class UsersService {
     id: number,
     updateGestorDto: UpdateGestorDto,
   ): Promise<User> {
-    const gestor = await this.gestorsRepository.findOne({ where: { id } });
+    const gestor = await this.gestorRepository.findOne({ where: { id } });
     if (!gestor) {
       throw new NotFoundException(`Gestor com ID ${id} não encontrado`);
     }
     Object.assign(gestor, updateGestorDto);
-    await this.gestorsRepository.save(gestor);
+    await this.gestorRepository.save(gestor);
     return gestor;
   }
 
@@ -63,12 +68,12 @@ export class UsersService {
     id: number,
     updatePlayerDto: UpdatePlayerDto,
   ): Promise<User> {
-    const player = await this.playersRepository.findOne({ where: { id } });
+    const player = await this.playerRepository.findOne({ where: { id } });
     if (!player) {
       throw new NotFoundException(`Player com ID ${id} não encontrado`);
     }
     Object.assign(player, updatePlayerDto);
-    await this.playersRepository.save(player);
+    await this.playerRepository.save(player);
     return player;
   }
 
