@@ -1,0 +1,14 @@
+**/node_modules
+
+# Compiled output
+/dist
+/build
+
+# Logs
+logs
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
